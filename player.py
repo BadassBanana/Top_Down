@@ -82,8 +82,6 @@ class Player(pygame.sprite.Sprite):
         if keystate[pygame.K_SPACE]:
             self.shoot()
 
-        self.rect.y += self.speedy
-        self.rect.x += self.speedx
 
     def animate_sprite(self, anim_list):
         now = pygame.time.get_ticks()

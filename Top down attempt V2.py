@@ -21,7 +21,7 @@ FPS = 60
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-pygame.display.set_caption("Pong")
+pygame.display.set_caption("Top Down Shooter")
 clock = pygame.time.Clock()
 
 # Game loop

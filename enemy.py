@@ -1,5 +1,6 @@
 import pygame
 import time
+from player import *
 from constant import *
 from spritesheet_functions import SpriteSheet
 import sys
@@ -30,7 +31,7 @@ class Enemy(pygame.sprite.Sprite):
 
         self.image = self.walking_frames_d[0]
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / 2, HEIGHT / 2)
+        self.rect.center = (120, 100)
         self.speedx = 0
         self.speedy = 0
 
@@ -41,6 +42,7 @@ class Enemy(pygame.sprite.Sprite):
         self.last_shot = pygame.time.get_ticks()
 
     def update(self):
+        self.scrolling()
         self.animate_sprite(self.walking_frames_d)
         self.check_bullets()
 
@@ -55,6 +57,12 @@ class Enemy(pygame.sprite.Sprite):
         hits = pygame.sprite.groupcollide(enemy_sprites, bullets, True, True)
         for hit in hits:
             self.kill()
+
+    def scrolling(self):
+        self.rect.x += -player.speedx
+        self.rect.y += -player.speedy
+
+
 
 enemy = Enemy()
 all_sprites.add(enemy)
