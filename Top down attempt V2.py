@@ -8,6 +8,7 @@ import pygame
 import time
 from player import *
 from enemy import *
+from backround import *
 from spritesheet_functions import SpriteSheet
 import sys
 
@@ -36,10 +37,14 @@ while running:
             running = False
     # Update
     all_sprites.update()
+    backround_list.update()
 
     # Render / draw
     screen.fill(WHITE)
+    backround_list.draw(screen)
     all_sprites.draw(screen)
+
+
     # After drawing everything, flip the display
     pygame.display.flip()
 
