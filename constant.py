@@ -11,6 +11,9 @@ DARK_GREEN = (34, 177, 76)
 BLUE = (0, 0, 255)
 
 all_sprites = pygame.sprite.Group()
-bullets = pygame.sprite.Group()
+
+player_bullets = pygame.sprite.Group()
+enemy_bullets = pygame.sprite.Group()
+
 enemy_sprites = pygame.sprite.Group()
 backround_list = pygame.sprite.Group()

@@ -24,5 +24,6 @@ class Backround(pygame.sprite.Sprite):
         self.rect.x += -player.speedx
         self.rect.y += -player.speedy
 
+
 backround = Backround()
 backround_list.add(backround)

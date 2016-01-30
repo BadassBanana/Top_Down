@@ -79,6 +79,20 @@ class Player(pygame.sprite.Sprite):
             self.animate_sprite(self.walking_frames_r)
             self.direction = "right"
 
+
+        # I did this as the player would shoot to the left or right even if he was going up or down
+        if keystate[pygame.K_RIGHT] and keystate[pygame.K_UP]:
+            self.direction = "up"
+
+        if keystate[pygame.K_LEFT] and keystate[pygame.K_UP]:
+            self.direction = "up"
+
+        if keystate[pygame.K_DOWN] and keystate[pygame.K_RIGHT]:
+            self.direction = "down"
+
+        if keystate[pygame.K_DOWN] and keystate[pygame.K_LEFT]:
+            self.direction = "down"
+
         if keystate[pygame.K_SPACE]:
             self.shoot()
 
@@ -94,33 +108,42 @@ class Player(pygame.sprite.Sprite):
         now = pygame.time.get_ticks()
         if now - self.last_shot > self.shoot_delay:
             self.last_shot = now
-            bullet = Bullet(self.rect.centerx, self.rect.centery + 25)
+            bullet = Bullet(self.rect.centerx, self.rect.centery + 35)
             all_sprites.add(bullet)
-            bullets.add(bullet)
+            player_bullets.add(bullet)
+
+arrow_img = pygame.image.load("arrow_left.png").convert()
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((10, 10))
+        self.image = pygame.transform.scale(arrow_img, (60, 20))
+        self.image.set_colorkey(DARK_GREEN)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
         self.speedx = 0
         self.speedy = 0
+        self.flipx = False
 
         if player.direction == "left":
             self.speedx = -5
+            self.image = pygame.transform.rotate(self.image, 0)
 
         if player.direction == "right":
             self.speedx = 5
+            self.image = pygame.transform.rotate(self.image, 180)
 
         if player.direction == "up":
             self.speedy = -5
+            self.image = pygame.transform.rotate(self.image, -90)
 
         if player.direction == "down":
             self.speedy = 5
+            self.image = pygame.transform.rotate(self.image, 90)
 
     def update(self):
+        self.scrolling()
         self.rect.y += self.speedy
         self.rect.x += self.speedx
         # kill if it moves off the top of the screen
@@ -128,6 +151,10 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
         if self.rect.left < 0 or self.rect.right > WIDTH:
             self.kill()
+
+    def scrolling(self):
+        self.rect.x += -player.speedx
+        self.rect.y += -player.speedy
 
 player = Player()
 all_sprites.add(player)

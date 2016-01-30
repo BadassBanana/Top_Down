@@ -1,7 +1,7 @@
 # Plans for a Top Down Shooter
 # Make a character from a bird's eye view
 # Add sidescrolling to the thing
-    # Yeah I don't know how this is going to work...
+    # DID IT BITCHES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 import pygame
@@ -24,6 +24,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption("Top Down Shooter")
 clock = pygame.time.Clock()
+
 
 # Game loop
 running = True
