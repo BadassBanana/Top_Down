@@ -1,7 +1,6 @@
 # Plans for a Top Down Shooter
 # Make a character from a bird's eye view
 # Add sidescrolling to the thing
-    # DID IT BITCHES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 import pygame
@@ -9,6 +8,7 @@ import time
 from player import *
 from enemy import *
 from backround import *
+from constant import *
 from spritesheet_functions import SpriteSheet
 import sys
 
@@ -16,11 +16,6 @@ import sys
 pygame.init()
 pygame.mixer.init()
 
-WIDTH = 800
-HEIGHT = 600
-FPS = 60
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption("Top Down Shooter")
 clock = pygame.time.Clock()
@@ -38,11 +33,13 @@ while running:
             running = False
     # Update
     all_sprites.update()
-    backround_list.update()
+    #backround_list.update()
+    tile_group.update()
 
     # Render / draw
-    screen.fill(WHITE)
-    backround_list.draw(screen)
+    screen.fill(BLACK)
+    #backround_list.draw(screen)
+    tile_group.draw(screen)
     all_sprites.draw(screen)
 
 

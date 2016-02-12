@@ -112,6 +112,14 @@ class Player(pygame.sprite.Sprite):
             all_sprites.add(bullet)
             player_bullets.add(bullet)
 
+    def check_wall(self):
+        wall_collisions = pygame.sprite.groupcollide(enemy_sprites, player_bullets, False, False)
+        for collisions in wall_collisions:
+            if tile.solid_state == True:
+                self.speedx = 0
+                self.speedy = 0
+
+
 arrow_img = pygame.image.load("arrow_left.png").convert()
 
 class Bullet(pygame.sprite.Sprite):

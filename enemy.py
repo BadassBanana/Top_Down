@@ -6,16 +6,6 @@ from spritesheet_functions import SpriteSheet
 import sys
 import math
 
-pygame.init()
-pygame.mixer.init()
-
-WIDTH = 800
-HEIGHT = 600
-FPS = 60
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-
 class Enemy(pygame.sprite.Sprite):
     # Sprite for the Player
 
@@ -50,7 +40,7 @@ class Enemy(pygame.sprite.Sprite):
             self.walking_frames_r.append(image)
 
 
-        self.image = self.walking_frames_r[0]
+        self.image = self.walking_frames_d[0]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y) # 120, 200
         self.speedx = -2
@@ -170,16 +160,8 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.x += -player.speedx
         self.rect.y += -player.speedy
 
-
-enemy = Enemy(100, -200)
-enemy2 = Enemy(680, -200)
-enemy3 = Enemy(-900, 500)
-enemy4 = Enemy(-100, 100)
-all_sprites.add(enemy)
-all_sprites.add(enemy2)
-all_sprites.add(enemy3)
-all_sprites.add(enemy4)
+enemy = Enemy(-50, -50)
 enemy_sprites.add(enemy)
-enemy_sprites.add(enemy2)
-enemy_sprites.add(enemy3)
-enemy_sprites.add(enemy4)
+all_sprites.add(enemy)
+
+
