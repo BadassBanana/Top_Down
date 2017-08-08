@@ -1,26 +1,24 @@
 # Plans for a Top Down Shooter
 # Make a character from a bird's eye view
-# Make him shoot
-    # Only 4 directions for now
+# Add sidescrolling to the thing
 
 
 import pygame
 import time
-from constant import *
 from player import *
+from enemy import *
+from backround import *
+from constant import *
 from spritesheet_functions import SpriteSheet
+import sys
 
 # Initialises pygame and creates a window
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Pong")
+
+
+pygame.display.set_caption("Top Down Shooter")
 clock = pygame.time.Clock()
-
-
-player = Player()
-all_sprites = pygame.sprite.Group()
-all_sprites.add(player)
 
 
 # Game loop
@@ -35,10 +33,16 @@ while running:
             running = False
     # Update
     all_sprites.update()
+    #backround_list.update()
+    tile_group.update()
 
     # Render / draw
-    screen.fill(WHITE)
+    screen.fill(BLACK)
+    #backround_list.draw(screen)
+    tile_group.draw(screen)
     all_sprites.draw(screen)
+
+
     # After drawing everything, flip the display
     pygame.display.flip()
 
